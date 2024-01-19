@@ -1,7 +1,13 @@
+@use '../../variables';
+
 .app {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem 1rem;
+
+  @media (max-width: variables.$medium-screen-size) {
+    padding: 1rem 0.5rem;
+  }
 }
 
 .logo {
@@ -19,7 +25,7 @@
   justify-content: space-around;
   gap: 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: variables.$medium-screen-size) {
     flex-direction: column;
   }
 

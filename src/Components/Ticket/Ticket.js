@@ -1,9 +1,9 @@
 import logoSrc from '../../assets/airplane.png';
 import styles from './Ticket.module.scss';
 
-function Ticket() {
+function Ticket({openDetails}) {
   return (
-    <div className={styles['container']}>
+    <div className={styles['container']} onClick={openDetails}>
       <div className={styles['header']}>
         <h3>13 400 Р</h3>
         <img src={logoSrc} alt="company-logo" />
