@@ -25,9 +25,9 @@ $ node .\node_modules\cors-anywhere\server.js
 
 - Создать файл .env и поместить туда переменные:
 <pre>
-$ REACT_APP_API_KEY=YOUR_API_KEY
+REACT_APP_API_KEY=YOUR_API_KEY
   и
-$ REACT_APP_API_SECRET=YOUR_API_SECRET
+REACT_APP_API_SECRET=YOUR_API_SECRET
 </pre>
 - Открыть новое окно в терминале и запустить само приложение выполнив команду:
 <pre>
