@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/FlightSearch/static/css/main.fd722a5f.css",
+    "main.js": "/FlightSearch/static/js/main.ee885f2f.js",
+    "index.html": "/FlightSearch/index.html",
+    "static/media/check-mark.svg": "/FlightSearch/static/media/check-mark.e455d799a941d5899edb.svg",
+    "main.fd722a5f.css.map": "/FlightSearch/static/css/main.fd722a5f.css.map",
+    "main.ee885f2f.js.map": "/FlightSearch/static/js/main.ee885f2f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fd722a5f.css",
+    "static/js/main.ee885f2f.js"
+  ]
+}
