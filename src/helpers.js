@@ -1,60 +1,43 @@
-const CORS_ANYWHERE_URL = 'http://localhost:8080/'; //
+export function formatTimePeriod(timePeriod) {
+  const match = separateTimePeriodWithRegExp(timePeriod);
+  const hours = match[1] ?? '0';
+  const minutes = match[2] ?? '0';
 
-
-const BASE_URL = 'https://test.api.amadeus.com/v2';
-const URL = `${BASE_URL}/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2024-02-10&adults=1&max=30`;
-
-const CLIENT_ID = process.env.REACT_APP_API_KEY;
-const CLIENT_SECRET = process.env.REACT_APP_API_SECRET;
-
-async function fetchToken() {
-  const res = await fetch(
-    `${CORS_ANYWHERE_URL}https://test.api.amadeus.com/v1/security/oauth2/token`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic ' + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`),
-      },
-      body: 'grant_type=client_credentials',
-    }
-  );
-
-  return await res.json();
+  return `${hours}ч ${minutes}м`;
 }
 
-export async function fetchTickets() {
-  const { access_token } = await fetchToken();
-  console.log(access_token);
+export function convertTimePeriodToMinutes(timePeriod) {
+  const match = separateTimePeriodWithRegExp(timePeriod);
+  const hours = Number(match[1]) || 0
+  const minutes = Number(match[2]) || 0
 
-  const res = await fetch(URL, {
-    headers: { 'Authorization': `Bearer ${access_token}` },
+  return hours * 60 + minutes;
+}
+
+function separateTimePeriodWithRegExp(timePeriod) {
+  const regex = /PT(\d+)H(\d+)?/;
+  return regex.exec(timePeriod);
+}
+
+export function formatTimeStamp(timeStamp) {
+  const regex = /T(\d+):(\d+)/;
+  const match = regex.exec(timeStamp);
+  const hours = match[1];
+  const minutes = match[2];
+
+  return `${hours}:${minutes}`
+}
+
+export function formatPrice(price, currency) {
+  const formatter = new Intl.NumberFormat('ru', {
+    style: 'currency',
+    currency: currency || 'RUB',
+    maximumFractionDigits: 0
   });
 
-  return await res.json();
+  return formatter.format(price);
 }
 
-fetchTickets().then((res) => console.log(res)).catch(err => console.log(err));
-
-// const API_TOKEN = process.env.REACT_APP_API_TOKEN;
-// const BASE_URL = 'https://api.travelpayouts.com/v2/';
-// const URL = `${BASE_URL}prices/month-matrix?show_to_affiliates=true&origin=LED&destination=HKT`
-
-// export async function fetchTickets() {
-//   const res = await fetch(`${CORS_ANYWHERE_URL}${URL}`, {
-//     headers: {
-//       'Accept-Encoding': ['gzip', 'deflate'],
-//       'x-access-token': API_TOKEN,
-//     },
-//   });
-//   return await res.json();
-// }
-
-// fetchTickets().then((res) => console.log(res));
-
-export function getTimeStringFromMinutes(minutes) {
-  const hours = minutes / 60;
-  const lastedMinutes = minutes % 60;
-
-  return `${hours}ч ${lastedMinutes}м`;
+export function sortByField(fieldName) {
+  return (a, b) => a[fieldName] > b[fieldName] ? 1 : -1
 }

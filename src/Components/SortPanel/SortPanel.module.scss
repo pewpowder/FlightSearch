@@ -26,6 +26,8 @@
     border-bottom-right-radius: var(--radius);
     border-left: none;
   }
+
+  transition: 300ms all ease-in-out;
 }
 
 .active-btn {

@@ -24,8 +24,8 @@
 }
 
 .modal {
-  width: 400px;
-  height: 400px;
+  min-width: 400px;
+  min-height: 300px;
   padding: 1rem;
   margin: 1rem;
 
@@ -34,6 +34,11 @@
 
   transform: scale(0);
   transition: 200ms transform ease-in-out;
+
+  @media (max-width: variables.$medium-screen-size) {
+    min-width: fit-content;
+    min-height: fit-content;
+  }
 
   &.active {
     transform: scale(1);
@@ -67,6 +72,9 @@
 
 .list-details-item {
   margin: 2rem 0;
+  span {
+    text-transform: lowercase;
+  }
 
   @media (max-width: variables.$small-screen-size) {
     margin: 1rem 0;
